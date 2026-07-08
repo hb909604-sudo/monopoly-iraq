@@ -1,0 +1,563 @@
+/* =========================================================
+   مونوبولي العراق — هوية بصرية مستوحاة من بلاد الرافدين
+   لوحة الألوان: رمل الصحراء، طوب زقورة بابل، أزرق دجلة والفرات،
+   أخضر النخيل، وذهب التمر — مع لمسات من ألوان العلم العراقي.
+   ========================================================= */
+
+:root {
+  --sand: #e9dcb8;
+  --sand-dark: #d9c89a;
+  --cream: #fbf6e9;
+  --clay: #b5502e;
+  --clay-dark: #8a3a1f;
+  --river: #1d6e73;
+  --river-dark: #14494d;
+  --palm: #2f6e3a;
+  --gold: #c79a2e;
+  --ink: #241c13;
+  --ink-soft: #4a3f2e;
+  --flag-red: #ce1126;
+  --flag-black: #1b1b1b;
+  --white: #ffffff;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-card: 0 10px 30px rgba(36, 28, 19, 0.25);
+  --font-display: 'Aref Ruqaa', serif;
+  --font-body: 'Cairo', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--sand);
+  color: var(--ink);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+#app {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+h1, h2, h3, .brand-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+}
+
+/* ---------- خلفية زخرفية: دجلة والفرات + نقوش هندسية ---------- */
+
+.bg-decor {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-river {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 15% 0%, rgba(29, 110, 115, 0.18), transparent 60%),
+    radial-gradient(ellipse 80% 50% at 85% 100%, rgba(47, 110, 58, 0.16), transparent 60%);
+}
+
+.bg-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.10;
+  background-image:
+    linear-gradient(45deg, var(--clay) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--clay) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--clay) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--clay) 75%);
+  background-size: 34px 34px;
+  background-position: 0 0, 0 17px, 17px -17px, -17px 0px;
+}
+
+/* شريط زخرفي متعرج يحاكي طوب زقورة بابل، يُستخدم كفاصل بصري مُوقّع */
+.ziggurat-divider {
+  height: 14px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    -45deg, var(--gold), var(--gold) 10px, var(--clay) 10px, var(--clay) 20px
+  );
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+/* ---------- شاشات الانضمام / الاستقبال ---------- */
+
+.screen-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.landing-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--cream);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 32px 28px;
+  border: 3px solid var(--gold);
+  position: relative;
+  text-align: center;
+  animation: riseIn 0.5s ease;
+}
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.brand-title {
+  font-size: 2.4rem;
+  color: var(--clay-dark);
+  margin: 4px 0 0;
+}
+
+.brand-sub {
+  font-size: 0.95rem;
+  color: var(--river-dark);
+  margin: 4px 0 18px;
+  letter-spacing: 1px;
+}
+
+.flag-strip {
+  display: flex;
+  height: 6px;
+  width: 140px;
+  margin: 0 auto 18px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.flag-strip span { flex: 1; }
+.flag-strip span:nth-child(1) { background: var(--flag-red); }
+.flag-strip span:nth-child(2) { background: var(--white); }
+.flag-strip span:nth-child(3) { background: var(--flag-black); }
+
+.field-label {
+  display: block;
+  text-align: right;
+  font-weight: 600;
+  margin: 14px 0 6px;
+  color: var(--ink-soft);
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--sand-dark);
+  background: var(--white);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+input[type="text"]:focus { border-color: var(--river); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 1rem;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--palm), #1f4d27);
+  color: var(--white);
+  box-shadow: 0 6px 16px rgba(47, 110, 58, 0.35);
+  width: 100%;
+  margin-top: 8px;
+}
+.btn-primary:hover { box-shadow: 0 8px 20px rgba(47, 110, 58, 0.5); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), #a67c1f);
+  color: var(--ink);
+}
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--river);
+  color: var(--river-dark);
+}
+.btn-danger {
+  background: var(--flag-red);
+  color: var(--white);
+}
+.btn-sm { padding: 8px 14px; font-size: 0.85rem; }
+
+.share-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--sand);
+  border: 2px dashed var(--gold);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin: 10px 0 4px;
+}
+.share-box input {
+  border: none;
+  background: transparent;
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  text-align: left;
+  direction: ltr;
+}
+
+.hint-text { font-size: 0.82rem; color: var(--ink-soft); opacity: 0.8; margin-top: 6px; }
+
+/* ---------- شاشة الانتظار / اللوبي ---------- */
+
+.lobby-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+.lobby-header { text-align: center; margin-bottom: 18px; }
+
+.player-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 18px 0;
+}
+
+.player-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--cream);
+  border: 2px solid var(--sand-dark);
+  border-radius: 999px;
+  padding: 8px 14px 8px 8px;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+.avatar-dot {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-weight: 800; font-size: 0.9rem;
+  border: 2px solid rgba(255,255,255,0.6);
+}
+.host-badge {
+  font-size: 0.65rem;
+  background: var(--gold);
+  color: var(--ink);
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-right: 4px;
+}
+
+.panel {
+  background: var(--cream);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 2px solid var(--sand-dark);
+  padding: 18px;
+}
+
+/* ---------- شاشة اللعب ---------- */
+
+.game-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 16px;
+  padding: 14px;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+  align-items: start;
+}
+
+@media (max-width: 980px) {
+  .game-shell { grid-template-columns: 1fr; }
+}
+
+.topbar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--river-dark);
+  color: var(--cream);
+  border-radius: var(--radius-md);
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.topbar .brand-title { font-size: 1.4rem; color: var(--gold); margin: 0; }
+.topbar-controls { display: flex; gap: 8px; align-items: center; }
+.icon-btn {
+  background: rgba(255,255,255,0.12);
+  color: var(--cream);
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  transition: background 0.2s;
+}
+.icon-btn:hover { background: rgba(255,255,255,0.25); }
+.icon-btn.active { background: var(--gold); color: var(--ink); }
+
+/* لوحة اللعب: شبكة 8×8 */
+.board-wrap {
+  background: var(--cream);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 3px solid var(--gold);
+  padding: 10px;
+  aspect-ratio: 1 / 1;
+  max-width: 100%;
+}
+
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: 3px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: var(--sand);
+  border-radius: var(--radius-md);
+  padding: 3px;
+}
+
+.board-center {
+  grid-row: 2 / 8;
+  grid-column: 2 / 8;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(199,154,46,0.15), transparent 70%),
+    var(--sand);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 2px dashed var(--gold);
+  padding: 10px;
+  text-align: center;
+}
+
+.board-center .brand-title { font-size: clamp(1.1rem, 3vw, 2rem); color: var(--clay-dark); margin: 0; }
+
+.board-cell {
+  position: relative;
+  background: var(--white);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 0.62rem;
+  overflow: hidden;
+  border: 1px solid var(--sand-dark);
+  padding: 2px;
+  text-align: center;
+  cursor: default;
+}
+
+.board-cell.corner {
+  background: var(--river-dark);
+  color: var(--cream);
+  justify-content: center;
+}
+
+.cell-band { height: 22%; width: 100%; position: absolute; top: 0; right: 0; }
+.cell-icon { font-size: 1.1rem; margin-top: 22%; }
+.cell-icon.special { margin-top: 0; font-size: 1.4rem; }
+.cell-name { font-weight: 700; line-height: 1.05; margin-top: 1px; }
+.cell-price { font-size: 0.55rem; color: var(--ink-soft); }
+.board-cell.corner .cell-price { color: var(--cream); }
+.cell-owner { position: absolute; bottom: 2px; width: 70%; height: 4px; border-radius: 2px; }
+
+.cell-tokens {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  max-width: 90%;
+}
+.token {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  color: white;
+  font-size: 0.55rem;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  animation: tokenPop 0.3s ease;
+}
+@keyframes tokenPop {
+  from { transform: scale(0); } to { transform: scale(1); }
+}
+
+/* ---------- الشريط الجانبي ---------- */
+
+.sidebar { display: flex; flex-direction: column; gap: 12px; }
+
+.players-panel .player-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 6px;
+  background: var(--sand);
+  border: 2px solid transparent;
+}
+.player-row.active-turn {
+  border-color: var(--gold);
+  background: #fff6e0;
+  box-shadow: 0 0 0 3px rgba(199,154,46,0.25);
+}
+.player-row .name { font-weight: 700; flex: 1; }
+.player-row .money { font-weight: 700; color: var(--palm); font-variant-numeric: tabular-nums; }
+.player-row.bankrupt { opacity: 0.45; text-decoration: line-through; }
+.player-row .jail-tag { font-size: 0.7rem; background: var(--flag-red); color: white; padding: 1px 6px; border-radius: 6px; }
+
+.dice-area {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.dice-row { display: flex; gap: 10px; }
+.die {
+  width: 46px; height: 46px;
+  background: var(--white);
+  border-radius: 10px;
+  border: 2px solid var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; font-weight: 800;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.die.rolling { animation: shake 0.5s ease; }
+@keyframes shake {
+  0%,100% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg) scale(1.1); }
+  75% { transform: rotate(15deg) scale(1.1); }
+}
+
+.action-panel { display: flex; flex-direction: column; gap: 8px; }
+
+.log-panel, .chat-panel { max-height: 240px; display: flex; flex-direction: column; }
+.log-list, .chat-messages {
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 2px;
+}
+.log-item { font-size: 0.78rem; color: var(--ink-soft); border-bottom: 1px dashed var(--sand-dark); padding-bottom: 4px; }
+.chat-msg { font-size: 0.82rem; background: var(--sand); border-radius: 8px; padding: 6px 10px; }
+.chat-msg b { color: var(--river-dark); }
+.chat-input-row { display: flex; gap: 6px; margin-top: 8px; }
+.chat-input-row input { flex: 1; }
+
+.panel-title {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--clay-dark);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---------- نوافذ الحوار Modal ---------- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(36, 28, 19, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 16px;
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal-box {
+  background: var(--cream);
+  border-radius: var(--radius-lg);
+  border: 3px solid var(--gold);
+  box-shadow: var(--shadow-card);
+  max-width: 420px;
+  width: 100%;
+  padding: 26px 22px;
+  text-align: center;
+  animation: popIn 0.25s cubic-bezier(.2,1.4,.4,1);
+}
+@keyframes popIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.modal-box h3 { margin: 4px 0 10px; color: var(--clay-dark); }
+.modal-icon { font-size: 2.4rem; margin-bottom: 4px; }
+.modal-actions { display: flex; gap: 10px; margin-top: 18px; }
+.modal-actions .btn { flex: 1; margin-top: 0; }
+
+.toast-root {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+.toast {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  animation: toastIn 0.25s ease;
+}
+@keyframes toastIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
+
+/* ---------- عناصر مساعدة ---------- */
+
+.empty-state { text-align: center; color: var(--ink-soft); padding: 20px 10px; font-size: 0.9rem; }
+
+.scrollbar-styled::-webkit-scrollbar { width: 6px; }
+.scrollbar-styled::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+@media (max-width: 560px) {
+  .board-cell { font-size: 0.5rem; }
+  .cell-icon { font-size: 0.9rem; }
+  .die { width: 38px; height: 38px; font-size: 1.2rem; }
+}
