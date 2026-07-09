@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite';
 
-// base: './' يجعل مسارات الملفات نسبية، وهو ما تحتاجه GitHub Pages
-// سواء نُشر المشروع على جذر النطاق أو داخل مسار فرعي مثل /repo-name/
+const isProd = process.env.NODE_ENV === 'production';
+
 export default defineConfig({
-  base: './',
+  base: isProd ? '/monopoly-iraq/' : '/',
   build: {
     outDir: 'dist',
   },
